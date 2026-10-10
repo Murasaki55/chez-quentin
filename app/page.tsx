@@ -1,3 +1,4 @@
+export const instant = false
 import { neon } from "@neondatabase/serverless";
 
 export default async function Home() {
