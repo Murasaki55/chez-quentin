@@ -1,17 +1,17 @@
 export const instant = false
-import { neon } from "@neondatabase/serverless";
+import Header from "./_components/header";
+import Card from "./_components/card";
 
 export default async function Home() {
-  const sql = neon(`${process.env.DATABASE_URL}`);
-  const cocktails = await sql`SELECT * FROM cocktails`;
 
   return (
-    <ul>
-      {cocktails.map((c) => (
-        <li key={c.id}>
-          {c.name} : {c.ingredients.join(", ")}
-        </li>
-      ))}
-    </ul>
+    <div>
+      <Header/>
+      <div className="body">
+        <h1>Bienvenue Chez Quentin !</h1>
+        <Card/>
+      </div>
+    </div>
+
   );
 }

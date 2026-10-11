@@ -1,26 +1,350 @@
-@import "tailwindcss";
+/* ============================================
+   BASE.CSS — Design System
+   Palette : Catppuccin Mocha (dark) + accent Mauve
+   Doc palette : https://catppuccin.com/palette
+   ============================================ */
 
+/* ---------- Variables ---------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Fond / surfaces */
+  --color-bg: #1e1e2e;          /* base */
+  --color-bg-alt: #181825;      /* mantle, un poil plus sombre (sidebar) */
+  --color-surface: #313244;     /* surface0 */
+  --color-surface-hover: #45475a; /* surface1 */
+  --color-border: #45475a;      /* surface1 */
+
+  /* Texte */
+  --color-text: #cdd6f4;        /* text */
+  --color-subtext: #a6adc8;     /* subtext0 */
+  --color-muted: #6c7086;       /* overlay0 */
+
+  /* Accents */
+  --color-primary: #cba6f7;     /* mauve */
+  --color-primary-hover: #b794f0;
+  --color-accent: #f5c2e7;      /* pink */
+  --color-danger: #f38ba8;      /* red */
+  --color-danger-hover: #eb6f92;
+  --color-success: #a6e3a1;     /* green */
+  --color-warning: #f9e2af;     /* yellow */
+
+  /* Dimensions */
+  --radius: 8px;
+  --radius-sm: 4px;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+
+  /* Ombres */
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.3);
+
+  /* Typo */
+  --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+
+}
+
+.body{
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+header {
+  background-color: var(--color-surface);
+  text-align: center;
+  padding: 20;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 var(--spacing-sm) 0;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+p {
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--color-subtext);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- Layout utilitaire ---------- */
+.container {
+  padding: var(--spacing-xl);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.gap-sm { gap: var(--spacing-sm); }
+.gap-md { gap: var(--spacing-md); }
+.gap-lg { gap: var(--spacing-lg); }
+
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+}
+
+/* ---------- Boutons ---------- */
+button,
+.btn {
+  font-family: var(--font-main);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+button:hover,
+.btn:hover {
+  background-color: var(--color-surface-hover);
+}
+
+button:active,
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  border-color: var(--color-primary);
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+.btn-danger {
+  background-color: transparent;
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+
+.btn-danger:hover {
+  background-color: var(--color-danger);
+  color: var(--color-bg);
+}
+
+.btn-success {
+  background-color: transparent;
+  color: var(--color-success);
+  border-color: var(--color-success);
+}
+
+.btn-success:hover {
+  background-color: var(--color-success);
+  color: var(--color-bg);
+}
+
+.btn-warning {
+  background-color: transparent;
+  color: var(--color-warning);
+  border-color: var(--color-warning);
+}
+
+.btn-warning:hover {
+  background-color: var(--color-warning);
+  color: var(--color-bg);
+}
+
+/* ---------- Inputs / Select ---------- */
+input[type="text"],
+input[type="search"],
+input[type="date"],
+textarea,
+select {
+  font-family: var(--font-main);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+input[type="text"]:focus,
+input[type="search"]:focus,
+input[type="date"]:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-primary);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-muted);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* ---------- Cartes (ex : idées) ---------- */
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--spacing-md);
+  /*cursor: pointer;*/
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+/* .card:hover {
+  background-color: var(--color-surface-hover);
+  transform: translateY(-2px);
+} */
+
+.card-title {
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-xs);
+}
+
+.card-tag {
+  display: inline-block;
+  background-color: var(--color-bg-alt);
+  color: var(--color-primary);
+  border-radius: var(--radius-sm);
+  padding: 2px 8px;
+  font-size: 0.75rem;
+}
+
+/* ---------- Modales (<dialog>) ---------- */
+dialog {
+  background-color: var(--color-bg-alt);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow);
+  min-width: 320px;
+}
+
+dialog::backdrop {
+  background-color: rgba(17, 17, 27, 0.7); /* crust, semi-transparent */
+}
+
+dialog .modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+
+/* ---------- Sidebar ---------- */
+#sidebar {
+  background-color: var(--color-bg-alt);
+  border-right: 1px solid var(--color-border);
+  height: 100vh;
+  width: 220px;
+  padding: var(--spacing-lg) var(--spacing-md);
+}
+
+#sidebar ul li {
+  margin-bottom: var(--spacing-xs);
+}
+
+#sidebar ul li a {
+  display: block;
+  color: var(--color-subtext);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-sm);
+}
+
+#sidebar ul li a:hover {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+#sidebar ul li a.active {
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.row {
+  min-width: none;
+  display: flex;
+  gap:50px;
+  flex-direction: row;
+  justify-content: center;
+}
+.column{
+  min-width: none;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ---------- Scrollbar (cohérence visuelle) ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-hover);
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted);
 }
