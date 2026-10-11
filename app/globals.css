@@ -342,8 +342,8 @@ dialog .modal-actions {
 @media (max-width: 600px) {
 
   .body {
-    margin-left: 4%;
-    margin-right: 4%;
+    margin-left: 2%;
+    margin-right: 2%;
   }
 
   header {
