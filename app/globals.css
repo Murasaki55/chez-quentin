@@ -2,30 +2,31 @@
    BASE.CSS — Design System
    Palette : Catppuccin Mocha (dark) + accent Mauve
    Doc palette : https://catppuccin.com/palette
+   Desktop par défaut, bloc mobile (≤ 600px) à la fin
    ============================================ */
 
 /* ---------- Variables ---------- */
 :root {
   /* Fond / surfaces */
-  --color-bg: #1e1e2e;          /* base */
-  --color-bg-alt: #181825;      /* mantle, un poil plus sombre (sidebar) */
-  --color-surface: #313244;     /* surface0 */
+  --color-bg: #1e1e2e;            /* base */
+  --color-bg-alt: #181825;        /* mantle */
+  --color-surface: #313244;       /* surface0 */
   --color-surface-hover: #45475a; /* surface1 */
-  --color-border: #45475a;      /* surface1 */
+  --color-border: #45475a;        /* surface1 */
 
   /* Texte */
-  --color-text: #cdd6f4;        /* text */
-  --color-subtext: #a6adc8;     /* subtext0 */
-  --color-muted: #6c7086;       /* overlay0 */
+  --color-text: #cdd6f4;          /* text */
+  --color-subtext: #a6adc8;       /* subtext0 */
+  --color-muted: #6c7086;         /* overlay0 */
 
   /* Accents */
-  --color-primary: #cba6f7;     /* mauve */
+  --color-primary: #cba6f7;       /* mauve */
   --color-primary-hover: #b794f0;
-  --color-accent: #f5c2e7;      /* pink */
-  --color-danger: #f38ba8;      /* red */
+  --color-accent: #f5c2e7;        /* pink */
+  --color-danger: #f38ba8;        /* red */
   --color-danger-hover: #eb6f92;
-  --color-success: #a6e3a1;     /* green */
-  --color-warning: #f9e2af;     /* yellow */
+  --color-success: #a6e3a1;       /* green */
+  --color-warning: #f9e2af;       /* yellow */
 
   /* Dimensions */
   --radius: 8px;
@@ -62,10 +63,9 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
   line-height: 1.5;
-
 }
 
-.body{
+.body {
   margin-left: 10%;
   margin-right: 10%;
 }
@@ -73,7 +73,7 @@ body {
 header {
   background-color: var(--color-surface);
   text-align: center;
-  padding: 20;
+  padding: var(--spacing-md);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -107,17 +107,9 @@ ul, ol {
   padding: var(--spacing-xl);
 }
 
-.flex {
-  display: flex;
-}
-
-.flex-wrap {
-  flex-wrap: wrap;
-}
-
-.flex-col {
-  flex-direction: column;
-}
+.flex { display: flex; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-col { flex-direction: column; }
 
 .gap-sm { gap: var(--spacing-sm); }
 .gap-md { gap: var(--spacing-md); }
@@ -127,6 +119,20 @@ ul, ol {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: var(--spacing-md);
+}
+
+.row {
+  display: flex;
+  gap: 50px;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.column {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ---------- Boutons ---------- */
@@ -239,14 +245,8 @@ textarea {
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: var(--spacing-md);
-  /*cursor: pointer;*/
   transition: background-color 0.15s ease, transform 0.1s ease;
 }
-
-/* .card:hover {
-  background-color: var(--color-surface-hover);
-  transform: translateY(-2px);
-} */
 
 .card-title {
   font-weight: 600;
@@ -316,22 +316,7 @@ dialog .modal-actions {
   font-weight: 600;
 }
 
-.row {
-  min-width: none;
-  display: flex;
-  gap:50px;
-  flex-direction: row;
-  justify-content: center;
-}
-.column{
-  min-width: none;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* ---------- Scrollbar (cohérence visuelle) ---------- */
+/* ---------- Scrollbar ---------- */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -347,4 +332,104 @@ dialog .modal-actions {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-muted);
+}
+
+/* ============================================
+   MOBILE (≤ 600px)
+   Doit rester À LA FIN du fichier pour écraser
+   les règles desktop ci-dessus.
+   ============================================ */
+@media (max-width: 600px) {
+
+  .body {
+    margin-left: 4%;
+    margin-right: 4%;
+  }
+
+  header {
+    padding: var(--spacing-sm);
+  }
+
+  .container {
+    padding: var(--spacing-md);
+  }
+
+  /* Rangées et colonnes : tout s'empile, pleine largeur */
+  .row {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .column {
+    width: 100%;
+  }
+
+  .grid-auto {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: var(--spacing-sm);
+  }
+
+  /* Zones tactiles confortables + 16px sur les champs
+     pour éviter le zoom automatique sur iOS */
+  button,
+  .btn {
+    min-height: 44px;
+  }
+
+  input[type="text"],
+  input[type="search"],
+  input[type="date"],
+  textarea,
+  select {
+    font-size: 16px;
+    min-height: 44px;
+    width: 100%;
+  }
+
+  /* Pas de hover collant au toucher */
+  .card:hover {
+    transform: none;
+  }
+
+  /* Modales : presque plein écran */
+  dialog {
+    min-width: 0;
+    width: 92vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: var(--spacing-md);
+  }
+
+  dialog .modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  dialog .modal-actions button {
+    width: 100%;
+  }
+
+  /* Sidebar : barre horizontale scrollable en haut */
+  #sidebar {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--spacing-sm);
+  }
+
+  #sidebar ul {
+    display: flex;
+    gap: var(--spacing-xs);
+    overflow-x: auto;
+  }
+
+  #sidebar ul li {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  /* Scrollbar plus fine */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
 }

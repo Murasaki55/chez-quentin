@@ -8,3 +8,14 @@
     margin-bottom: 30px;
     margin-top: 10px;
 }
+
+@media (max-width: 600px) {
+.card{
+    width:95%;
+    margin-bottom: 20px;
+    margin-left: 3%;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+}

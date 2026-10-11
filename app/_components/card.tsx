@@ -3,7 +3,6 @@ export const instant = false
 import { neon } from "@neondatabase/serverless";
 import "../card.css";
 import Image from 'next/image'
-import image from '../arthur.png'
 
 export default async function Card() {
     const sql = neon(`${process.env.DATABASE_URL}`);
@@ -20,7 +19,7 @@ export default async function Card() {
                         <button className="btn btn-success">Commander</button>
                     </div>
                     <Image
-                        src={image}
+                        src={c.image_url}
                         width={200}
                         height={200}
                         alt="Picture of the author"
