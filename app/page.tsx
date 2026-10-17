@@ -1,6 +1,6 @@
 export const instant = false
 import Header from "./_components/header";
-import Card from "./_components/card";
+import Card from "./_components/cardCocktails";
 
 export default async function Home() {
 
