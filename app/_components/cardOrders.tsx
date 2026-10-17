@@ -1,6 +1,7 @@
 export const instant = false
 import { neon } from "@neondatabase/serverless";
 import "../card.css";
+import LiveRefresh from "./LiveRefresh";
 
 export default async function Card() {
     
@@ -17,6 +18,7 @@ export default async function Card() {
                 </li>
             ))}
             </ul>
+            <LiveRefresh lastId={Math.max(0, ...orders.map((o) => o.id))} />
         </div>
     )
 }
