@@ -7,3 +7,8 @@ export async function Commande(id :number, name : string) {
 
     return
 }
+
+export async function DeleteOrders() {
+     const sql = neon(`${process.env.DATABASE_URL}`);
+     await sql`DELETE FROM orders`;
+}
