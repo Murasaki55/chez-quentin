@@ -24,7 +24,7 @@ export default async function Card() {
                         src={c.image_url}
                         width={200}
                         height={200}
-                        alt="Picture of the author"
+                        alt="Picture of the cocktail"
                     />
                 </li>
             ))}

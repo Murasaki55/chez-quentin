@@ -18,7 +18,7 @@ export default function CommanderButton({ cocktailId }: { cocktailId: number }) 
             <dialog ref={dialogRef} id="modal">
                 <form method="dialog" className="column" action="/search">
                     <label>Nom de la commande</label>
-                    <input type="text" className="input" onChange={(e) => setName(e.target.value)}/>
+                    <input type="text" className="inputModal" onChange={(e) => setName(e.target.value)}/>
                     <button className="btn_success" onClick={commandeClick}>Valider la commande</button>
                 </form>
             </dialog>

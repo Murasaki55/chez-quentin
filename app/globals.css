@@ -136,9 +136,14 @@ ul, ol {
   align-items: center;
 }
 
-.input {
+.inputModal {
   margin-top: 5%;
   margin-bottom: 5%;
+}
+
+.input {
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
 
 /* ---------- Boutons ---------- */
