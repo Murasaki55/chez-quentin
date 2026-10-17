@@ -1,3 +1,4 @@
+export const instant = false
 import Header from "../_components/header";
 import Card from "../_components/cardOrders";
 import DeleteButton from "../_components/deleteButton";
