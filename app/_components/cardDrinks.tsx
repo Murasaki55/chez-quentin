@@ -13,7 +13,7 @@ export default async function Drinks() {
         <div>
             <ul>
             {drinks.map((c) => (
-                <li className="card row" key={c.id}>
+                <li className="card ord row" key={c.id}>
                     <h3 className="card-title">{c.name}</h3>
                     <DeleteButton id={c.id}/>
                 </li>

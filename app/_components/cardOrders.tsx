@@ -12,7 +12,7 @@ export default async function Card() {
         <div>
             <ul>
             {orders.map((c) => (
-                <li className="card row" key={c.orders_id}>
+                <li className="card ord row" key={c.orders_id}>
                     <h1 className="card-title">{c.guest_name}</h1>
                     <p className="itemsCard">{c.name}</p>
                 </li>

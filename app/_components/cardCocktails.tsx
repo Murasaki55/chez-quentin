@@ -20,7 +20,7 @@ export default async function Card() {
                     <summary>Cocktails</summary>
                     <ul>
                         {cocktails.map((c) => (
-                            <li className="card row" key={c.id}>
+                            <li className="card cock row" key={c.id}>
                                 <div>
                                     <h1 className="card-title">{c.name}</h1>
                                     <p className="itemsCard">Ingrédient : {c.ingredients.join(", ")}</p>
